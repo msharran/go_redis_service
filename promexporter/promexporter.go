@@ -6,26 +6,26 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promauto"
 )
 
-var totalKeysInDB = prometheus.NewCounterVec(
-	prometheus.CounterOpts{
-		Name: "goredis_keys_in_redis_total",
-		Help: "Number of keys in redis.",
-	},
-	[]string{"key"},
+var (
+	totalKeysInDB = prometheus.NewCounterVec(
+		prometheus.CounterOpts{
+			Name: "goredis_keys_in_redis_total",
+			Help: "Number of keys in redis.",
+		},
+		[]string{"key"},
+	)
+	responseStatus = prometheus.NewCounterVec(
+		prometheus.CounterOpts{
+			Name: "goredis_response_status",
+			Help: "Status of HTTP response",
+		},
+		[]string{"path", "status"},
+	)
+	httpDuration = promauto.NewHistogramVec(prometheus.HistogramOpts{
+		Name: "goredis_each_endpoint_latency_seconds_per_request",
+		Help: "Latency of each endpoint",
+	}, []string{"time", "path"})
 )
-
-var responseStatus = prometheus.NewCounterVec(
-	prometheus.CounterOpts{
-		Name: "goredis_response_status",
-		Help: "Status of HTTP response",
-	},
-	[]string{"path", "status"},
-)
-
-var httpDuration = promauto.NewHistogramVec(prometheus.HistogramOpts{
-	Name: "goredis_each_endpoint_latency_seconds_per_request",
-	Help: "Latency of each endpoint",
-}, []string{"time", "path"})
 
 func init() {
 	prometheus.Register(totalKeysInDB)
