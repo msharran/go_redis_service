@@ -37,6 +37,7 @@ cd go_redis_service
 ```
 
 To build, test, containerize, push and deply, run the server, use the following command
+_NOTE: You can give custom AWS CLI Profile in [terraform.tfvars](./terraform/terraform.tfvars)_ 
 ```bash
 bash deploy.sh
 ```
