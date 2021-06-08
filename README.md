@@ -2,6 +2,10 @@
  
 Please start docker to run the Go server as container:
 ```bash
+docker-compose up 
+
+#or
+
 docker compose up
 ```
 ---
