@@ -17,7 +17,7 @@ Prometheus Metrics
 Prometheus Metrics keys
 1. goredis_keys_in_redis_total - total no. of keys in the DB
 2. goredis_response_status - http status codes for each endpoint hit
-3. goredis_each_endpoint_latency_seconds_per_request - latency of each endpoint
+3. goredis_each_endpoint_latency_seconds_per_request_count - latency of each endpoint
 
 >`server-url` will be printed as terraform output
 
