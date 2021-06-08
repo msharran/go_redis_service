@@ -1,15 +1,14 @@
-# Dockerized redis-flask-app (Hello World)
+# Dockerized redis-go-app (Hello World)
  
-Please start docker to run the Flask server as container:
+Please start docker to run the Go server as container:
 ```bash
-docker build -t redisflaskapp .
-docker run -it -p 4000:4000 redisflaskapp
+docker compose up
 ```
 ---
 
 **NOTE:** I have pushed the image in my DockerHub Repository
 
-https://hub.docker.com/r/sharran/redisflaskapp
+https://hub.docker.com/r/sharran/go_redis_app
 
 
 # go_redis_service
