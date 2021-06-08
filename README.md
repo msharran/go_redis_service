@@ -1,4 +1,4 @@
-# In memory key value store service 
+# In memory key value store HTTP API Service 
 
 #### **Tech Stack:** Go, Redis, Docker, Terraform, AWS
 ---
