@@ -52,7 +52,9 @@ func main() {
 		if err != nil {
 			return c.JSON(400, err.Error())
 		}
-		return c.JSON(http.StatusCreated, "Success")
+		return c.JSON(http.StatusCreated, map[string]interface{}{
+			"message": "Saved successfully",
+		})
 	})
 
 	e.GET("/search", func(c echo.Context) error {
