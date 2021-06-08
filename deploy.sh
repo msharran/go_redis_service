@@ -8,6 +8,7 @@ docker build -t sharran/go_redis_app . || exit
 echo "Running tests........"
 docker-compose up -d redis || exit
 docker run --net=host --rm -v "$PWD":/usr/src/app -w /usr/src/app golang:1.16 go test -run "^Test" || exit
+docker-compose down
 
 #push
 echo "Pushing container........"
