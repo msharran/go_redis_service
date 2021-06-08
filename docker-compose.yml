@@ -14,7 +14,7 @@ services:
     volumes:
       - "redis_data:/bitnami/redis/data"
   server:
-    build: .
+    image: sharran/go_redis_app:latest
     ports:
       - "80:5000"
     depends_on:

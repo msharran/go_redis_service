@@ -1,3 +1,4 @@
 .idea
 terraform/.*
 terraform/terraform.tfstate*
+go_redis_app

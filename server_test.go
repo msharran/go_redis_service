@@ -11,42 +11,39 @@ import (
 )
 
 var (
-	mockDB = map[string]*Request{
-		"jon@labstack.com": &Request{"my-key", "Is so cooollllll"},
-	}
-	userJSON = `{"key":"","email":"jon@labstack.com"}`
+	createKeyJSON  = `{"key":"test-key","value":"test-value"}`
+	getSuccessJSON = `{"key":"test-key","value":"test-value"}` + "\n"
 )
 
 func TestSetKey(t *testing.T) {
 	// Setup
 	e := echo.New()
-	req := httptest.NewRequest(http.MethodPost, "/set", strings.NewReader(userJSON))
+	h := NewTestHandler()
+	req := httptest.NewRequest(http.MethodPost, "/set", strings.NewReader(createKeyJSON))
 	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 	rec := httptest.NewRecorder()
 	c := e.NewContext(req, rec)
-	h := &handler{mockDB}
 
 	// Assertions
-	if assert.NoError(t, h.createUser(c)) {
+	if assert.NoError(t, h.SetKey(c)) {
 		assert.Equal(t, http.StatusCreated, rec.Code)
-		assert.Equal(t, userJSON, rec.Body.String())
 	}
 }
 
 func TestGetUser(t *testing.T) {
 	// Setup
 	e := echo.New()
+	h := NewTestHandler()
 	req := httptest.NewRequest(http.MethodGet, "/", nil)
 	rec := httptest.NewRecorder()
 	c := e.NewContext(req, rec)
-	c.SetPath("/users/:email")
-	c.SetParamNames("email")
-	c.SetParamValues("jon@labstack.com")
-	h := &handler{mockDB}
+	c.SetPath("/get/:key")
+	c.SetParamNames("key")
+	c.SetParamValues("test-key")
 
 	// Assertions
-	if assert.NoError(t, h.getUser(c)) {
+	if assert.NoError(t, h.GetKey(c)) {
 		assert.Equal(t, http.StatusOK, rec.Code)
-		assert.Equal(t, userJSON, rec.Body.String())
+		assert.Equal(t, getSuccessJSON, rec.Body.String())
 	}
 }
