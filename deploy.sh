@@ -24,3 +24,4 @@ terraform validate  || exit
 terraform plan || exit
 terraform apply -auto-approve
 echo "Successfully deployed........"
+echo "It will take around 2 to 5 mins for the server to be up and running. Please wait..."
